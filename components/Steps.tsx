@@ -43,7 +43,6 @@ export function Steps({ children }: {
     setMaxSteps(children.length);
   }, [children.length, setMaxSteps])
 
-  console.log(index)
   return <div className='flex flex-col w-full h-full pb-6'>
     {
       children[index]
