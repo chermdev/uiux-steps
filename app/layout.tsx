@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(
+        "",
+        inter.className
+      )}>
+        {children}
+        <nav className="flex items-center justify-center w-full p-2 flex-col">
+          <p>
+            created with ❤️ by <a className="font-semibold underline" href="https://github.com/chermdev" target="_blank" rel="noopener noreferrer">@chermdev</a>
+          </p>
+          <ul>
+            <li>
+              <a className="text-blue-400 underline" href="https://github.com/chermdev/uiux-steps" target="_blank" rel="noopener noreferrer">
+                github repo</a>
+            </li>
+          </ul>
+        </nav>
+      </body>
     </html>
   );
 }
