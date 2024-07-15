@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 <br/>
 
 ### page.tsx
-> `useState` and `useContext` were used in `/components/Steps.tsx` file to steps state.
+> `useState` and `useContext` were used in `/components/Steps.tsx` file to manage steps state.
 ```typescript
 import {
   StepSection,
