@@ -5,23 +5,31 @@ import {
   createContext,
   useContext,
   type ReactNode,
-  type ReactElement
+  type ReactElement,
+  useEffect
 } from 'react';
+import { Icons } from './Icons';
 
 const StepsContext = createContext({
   index: 0,
+  setIndex: (i: number) => { },
   maxSteps: 0,
+  setMaxSteps: (i: number) => { },
   isFirstStep: true,
   isLastStep: false,
   clickNext: () => { },
   clickBack: () => { }
 });
 
-export function Step({ children }: {
-  children: ReactNode
+export function Step({ children, className }: {
+  children: ReactNode,
+  className?: string
 }) {
   return (
-    <div>
+    <div className={cn(
+      'w-full h-full mb-6',
+      className
+    )}>
       {children}
     </div>
   )
@@ -30,27 +38,31 @@ export function Step({ children }: {
 export function Steps({ children }: {
   children: ReactElement[]
 }) {
-  const { index, maxSteps } = useContext(StepsContext);
-  return <div className='w-full h-full flex flex-col justify-between'>
-    <div>
-      {
-        children[index]
-      }
-    </div>
-    <div className='p-2 w-fit flex flex-row gap-6 transition-all delay-100 mx-auto relative'>
+  const { index, setMaxSteps } = useContext(StepsContext);
+  useEffect(() => {
+    setMaxSteps(children.length);
+  }, [children.length, setMaxSteps])
+
+  console.log(index)
+  return <div className='flex flex-col w-full h-full pb-6'>
+    {
+      children[index]
+    }
+    <div className='p-1 flex flex-row gap-4 mx-auto shrink relative'>
       <div className={cn(
-        'absolute top-0 left-0 h-full bg-green-400 rounded-full -z-10 py-3 px-3',
-        `w-[${0.5 + 0.5 + 0.5 + index * 2}rem]`,
-      )}>
+        `absolute top-0 left-0 h-full bg-green-400 rounded-full z-10 transition-all duration-300`,
+      )}
+        style={{ width: `${1 + index * 1.5}rem` }}
+      >
       </div>
       {
         children.map((child, i) => {
           return <div
             key={i}
             className={cn(
-              'w-2 h-2 rounded-full bg-white',
+              'w-2 h-2 rounded-full bg-white z-20',
               {
-                'bg-gray-100': i > index
+                'bg-gray-300': i > index
               }
             )}>
           </div>
@@ -63,12 +75,12 @@ export function Steps({ children }: {
 export function StepsPagination({ children }: {
   children: ReactNode
 }) {
-  return <div className='flex flex-row gap-3 w-full'>
+  return <div className='flex flex-row gap-3 w-full relative'>
     {children}
   </div>
 }
 
-export function StepSection({ children }: {
+export function StepSection({ children, className }: {
   children: [
     ReactElement<{
       children: ReactElement[] | ReactElement
@@ -76,34 +88,38 @@ export function StepSection({ children }: {
     ReactElement<{
       children: ReactNode
     }>
-  ]
+  ],
+  className?: string
 }) {
   const [index, setIndex] = useState(0);
-  const maxSteps = children.length;
+  const [maxSteps, setMaxSteps] = useState(0);
   const clickNext = () => {
     if (index < maxSteps) {
       setIndex(index + 1);
-      console.log(index + 1);
     }
   }
   const clickBack = () => {
     if (index > 0) {
       setIndex(index - 1);
-      console.log(index - 1);
     }
   }
   const isFirstStep = index === 0;
-  const isLastStep = index === maxSteps;
+  const isLastStep = index === maxSteps - 1;
 
   return <StepsContext.Provider value={{
     index,
+    setIndex,
     maxSteps,
+    setMaxSteps,
     isFirstStep,
     isLastStep,
     clickNext,
     clickBack
   }}>
-    <div className='w-full space-y-4 flex flex-col justify-between items-center'>
+    <div className={cn(
+      'w-full flex flex-col justify-between items-center relative overflow-hidden',
+      className
+    )}>
       {children}
     </div>
   </StepsContext.Provider>
@@ -116,9 +132,9 @@ export function StepBackButton({ children }: {
   return <button
     className={
       cn(
-        'px-6 py-3 rounded-full bg-gray-100 transition-all delay-50',
+        'px-6 py-3 rounded-full bg-gray-100 transition-all duration-300 animate-in animate-accordion-up absolute left-0',
         {
-          '-translate-x-32 absolute': isFirstStep
+          '-translate-x-32': isFirstStep
         }
       )
     }
@@ -133,23 +149,30 @@ export function StepNextButton({ children }: {
 }) {
   const { isFirstStep, isLastStep, clickNext } = useContext(StepsContext);
   return (
-    isLastStep ? (
-      (
-        <button
-          className='px-6 py-3 rounded-full bg-blue-500 text-white w-full transition-all delay-100'
-        >
-          ✅ Finish
-        </button>
-      )
-    ) : (
-      <button
-        className={cn(
-          'px-6 py-3 rounded-full bg-blue-500 text-white w-full transition-all delay-100 relative'
-        )}
-        onClick={clickNext}
-      >
-        {children}
-      </button>
-    )
+    <button
+      className={cn(
+        'px-6 py-3 rounded-full bg-blue-500 text-white w-full transition-all duration-300 flex flex-row gap-1 items-center justify-center',
+        {
+          'ml-24': !isFirstStep
+        }
+      )}
+      onClick={() => {
+        if (isLastStep) {
+          alert('Finish');
+        } else {
+          clickNext();
+        }
+      }}
+    >
+      {
+        isLastStep &&
+        <Icons.CircleCheckFilled className='inline w-4 h-4' />
+      }
+      {
+        isLastStep ?
+          'Finish'
+          : children
+      }
+    </button>
   )
 }

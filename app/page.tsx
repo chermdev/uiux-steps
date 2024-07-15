@@ -7,21 +7,14 @@ import {
   StepNextButton,
 } from "../components/Steps";
 
-
 export default function Home() {
   return (
-    <main className="flex min-h-dvh w-full p-6">
-      <StepSection>
+    <main className="flex min-h-dvh w-full">
+      <StepSection className="md:max-h-[50rem] md:max-w-[25rem] md:mx-auto p-6">
         <Steps>
-          <Step>
-            <h1>Enter your details</h1>
-          </Step>
-          <Step>
-            <h1>Select your appointment</h1>
-          </Step>
-          <Step>
-            <h1>Confirm your appointment</h1>
-          </Step>
+          <Step className="rounded-xl bg-orange-300 flex items-center justify-center text-4xl font-semibold text-white">Step 1</Step>
+          <Step className="rounded-xl bg-green-300 flex items-center justify-center text-4xl font-semibold text-white">Step 2</Step>
+          <Step className="rounded-xl bg-purple-300 flex items-center justify-center text-4xl font-semibold text-white">Step 3</Step>
         </Steps>
         <StepsPagination>
           <StepBackButton>Back</StepBackButton>
