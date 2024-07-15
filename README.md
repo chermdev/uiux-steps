@@ -11,7 +11,7 @@ https://github.com/user-attachments/assets/4d6e9e76-8c10-4d71-8809-2b5844509f76
 ## Installation
 
 ```bash
-pnm i
+pnpm i
 pnpm dev
 ```
 
