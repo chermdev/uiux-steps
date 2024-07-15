@@ -47,11 +47,11 @@ export function Steps({ children }: {
     {
       children[index]
     }
-    <div className='p-1 flex flex-row gap-4 mx-auto shrink relative'>
+    <div className='p-2 flex flex-row gap-6 mx-auto shrink relative'>
       <div className={cn(
         `absolute top-0 left-0 h-full bg-green-400 rounded-full z-10 transition-all duration-300`,
       )}
-        style={{ width: `${1 + index * 1.5}rem` }}
+        style={{ width: `${1.5 + index * 2}rem` }}
       >
       </div>
       {
