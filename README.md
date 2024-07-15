@@ -1,20 +1,14 @@
-## Steps example
-
-Small project created with NextJS ReactJS and Tailwind to replicate this [tweet](https://twitter.com/zzerou_/status/1812509007648846300) created with figma.
-
-<center>
-<img src="./assets/tweet.png" height="300px" />
-</center>
-
-## Preview
+## Steps animation example
 
 [uiux-steps.vercel.app](https://uiux-steps.vercel.app/)
 
 https://github.com/user-attachments/assets/b4d98c54-7ead-4deb-bf95-231d04db4608
 
-example.mov
+Small project created with ReactJS and Tailwind to replicate these steps animation from this [tweet](https://twitter.com/zzerou_/status/1812509007648846300) created with figma.
 
-## Getting Started
+https://github.com/user-attachments/assets/4d6e9e76-8c10-4d71-8809-2b5844509f76
+
+## Installation
 
 ```bash
 pnm i
