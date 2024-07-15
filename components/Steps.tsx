@@ -27,7 +27,7 @@ export function Step({ children, className }: {
 }) {
   return (
     <div className={cn(
-      'w-full h-full mb-6',
+      'grow mb-6',
       className
     )}>
       {children}
@@ -43,11 +43,11 @@ export function Steps({ children }: {
     setMaxSteps(children.length);
   }, [children.length, setMaxSteps])
 
-  return <div className='flex flex-col w-full h-full pb-6'>
+  return <section className='flex flex-col h-full w-full grow pb-6'>
     {
       children[index]
     }
-    <div className='p-2 flex flex-row gap-6 mx-auto shrink relative'>
+    <div className='p-2 flex flex-row w-fit gap-6 mx-auto relative'>
       <div className={cn(
         `absolute top-0 left-0 h-full bg-green-400 rounded-full z-10 transition-all duration-300`,
       )}
@@ -68,15 +68,15 @@ export function Steps({ children }: {
         })
       }
     </div>
-  </div>
+  </section>
 }
 
 export function StepsPagination({ children }: {
   children: ReactNode
 }) {
-  return <div className='flex flex-row gap-3 w-full relative'>
+  return <section className='flex flex-row gap-3 w-full relative'>
     {children}
-  </div>
+  </section>
 }
 
 export function StepSection({ children, className }: {
@@ -116,7 +116,7 @@ export function StepSection({ children, className }: {
     clickBack
   }}>
     <div className={cn(
-      'w-full flex flex-col justify-between items-center relative overflow-hidden',
+      'flex flex-col relative overflow-hidden',
       className
     )}>
       {children}

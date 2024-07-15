@@ -18,11 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(
-        "",
+        "h-dvh w-full flex flex-col justify-between",
         inter.className
       )}>
         {children}
-        <nav className="flex items-center justify-center w-full p-2 flex-col">
+        <footer className="flex items-center justify-center w-full p-2 flex-col">
           <p>
             created with ❤️ by <a className="font-semibold underline" href="https://github.com/chermdev" target="_blank" rel="noopener noreferrer">@chermdev</a>
           </p>
@@ -32,7 +32,7 @@ export default function RootLayout({
                 github repo</a>
             </li>
           </ul>
-        </nav>
+        </footer>
       </body>
     </html>
   );
