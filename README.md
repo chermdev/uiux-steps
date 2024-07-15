@@ -9,6 +9,9 @@ Small project created with NextJS ReactJS and Tailwind to replicate this [tweet]
 ## Preview
 
 [uiux-steps.vercel.app](https://uiux-steps.vercel.app/)
+https://github.com/user-attachments/assets/b4d98c54-7ead-4deb-bf95-231d04db4608
+
+example.mov
 
 ## Getting Started
 
